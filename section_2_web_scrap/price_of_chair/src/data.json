@@ -1,0 +1,22 @@
+{
+  "students":[
+    {
+      "name":"sagarnil",
+      "mark":100,
+      "id":"12305"
+
+    },
+    {
+      "name":"ranjan",
+      "mark":100,
+      "id":"12306"
+
+    },
+    {
+      "name":"rebecca",
+      "mark":100,
+      "id":"12307"
+
+    }
+  ]
+}
