@@ -1,5 +1,7 @@
-from src.common.database import Database
+from common.database import Database
+from flask import session
 import uuid
+import datetime
 
 class User(object):
 
@@ -33,7 +35,7 @@ class User(object):
 
     @classmethod
     def register(cls, email, password):
-        user = User.get_by_email(email):
+        user = User.get_by_email(email)
         if user is None:
             #user doesn't exist, so we can create it
             new_user = cls(email, password)
