@@ -1,11 +1,12 @@
 from common.database import Database
+from models.blog import Blog
 from flask import session
 import uuid
 import datetime
 
 class User(object):
 
-    def __init__(self, email, password, _id):
+    def __init__(self, email, password, _id=None):
         self.email = email
         self.password = password
         self._id = uuid.uuid4().hex if _id is None else _id

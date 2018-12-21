@@ -1,7 +1,7 @@
 import uuid
 import datetime
-from src.common.database import Database
-from src.models.post import Post
+from common.database import Database
+from models.post import Post
 
 __author__ = 'sagar'
 
