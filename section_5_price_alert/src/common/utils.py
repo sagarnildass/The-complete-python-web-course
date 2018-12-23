@@ -1,9 +1,12 @@
 from passlib.hash import pbkdf2_sha512
+import re
 
 class Utils(object):
 
-    def __init__(self):
-        pass
+    @staticmethod
+    def email_is_valid(email):
+        email_address_matcher = re.compile('^[\w-]+@([\w-]+\.)+[\w]+$')
+        return True if email_address_matcher.match(email) else False
 
     @staticmethod
     def hash_password(password):
