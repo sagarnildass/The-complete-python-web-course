@@ -1,7 +1,7 @@
 import uuid
-from src.common.database import Database
-from src.common.utils import Utils
-import src.models.users.errors as UserErrors
+from common.database import Database
+from common.utils import Utils
+import models.users.errors as UserErrors
 
 class User(object):
 
@@ -27,3 +27,33 @@ class User(object):
             raise UserErrors.IncorrectPasswordError("Your password is incorrect")
 
         return True
+
+    @staticmethod
+    def register_user(email, password):
+        #This method registers a user using email and password. The password already comes as hashed sha512
+        #param email: user's email
+        #param password: sha-512 hashed password
+        #returns True if registered successfully, and False otherwise(exceptions can also be raised)
+        user_data = Database.find_one("users", {"email":email})
+
+        if user_data is not None:
+            #Tell user they are already registered
+            pass
+
+        if not Utils.email_is_valid(email):
+            #Tell the user that their email is not constructed properly
+            pass
+
+        User(email, Utils.hash_password(password)).save_to_db()
+
+        return True
+
+    def save_to_db(self):
+        Database.insert("users", self.json())
+
+    def json(self):
+        return {
+        "_id":self._id,
+        "email":self.email,
+        "password":self.password
+        }
