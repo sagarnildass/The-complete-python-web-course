@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from models.users.views import user_blueprint
 from common.database import Database
 
@@ -10,5 +10,8 @@ app.secret_key = "123"
 def init_db():
     Database.initialize()
 
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 app.register_blueprint(user_blueprint, url_prefix="/users")
