@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 from models.users.views import user_blueprint
+from models.alerts.views import alert_blueprint
+from models.stores.views import store_blueprint
 from common.database import Database
 
 app = Flask(__name__)
@@ -12,6 +14,8 @@ def init_db():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.jinja2')
 
 app.register_blueprint(user_blueprint, url_prefix="/users")
+app.register_blueprint(alert_blueprint, url_prefix="/alerts")
+app.register_blueprint(store_blueprint, url_prefix="/stores")
